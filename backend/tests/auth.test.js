@@ -6,7 +6,7 @@ process.env.NODE_ENV = 'test';
 const app = require('../app');
 const { sequelize, User } = require('../src/models');
 
-// ── Setup / Teardown ──────────────────────────────────────────────────────────
+// Setup / Teardown
 
 beforeAll(async () => {
   await sequelize.sync({ force: true });
@@ -20,7 +20,7 @@ afterEach(async () => {
   await User.destroy({ where: {}, truncate: true, cascade: true });
 });
 
-// ── Register ──────────────────────────────────────────────────────────────────
+// Register
 
 describe('POST /api/v1/auth/register', () => {
   const validPayload = { name: 'Alice', email: 'alice@example.com', password: 'secret123' };
@@ -69,7 +69,7 @@ describe('POST /api/v1/auth/register', () => {
   });
 });
 
-// ── Login ─────────────────────────────────────────────────────────────────────
+// Login
 
 describe('POST /api/v1/auth/login', () => {
   beforeEach(async () => {
@@ -106,7 +106,7 @@ describe('POST /api/v1/auth/login', () => {
   });
 });
 
-// ── Profile ───────────────────────────────────────────────────────────────────
+// Profile
 
 describe('GET /api/v1/auth/profile', () => {
   let token;

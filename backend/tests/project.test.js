@@ -5,7 +5,7 @@ process.env.NODE_ENV = 'test';
 const app = require('../app');
 const { sequelize, User, Project } = require('../src/models');
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+// Helpers 
 
 const registerAndLogin = async (email = 'user@example.com', name = 'User') => {
   const res = await request(app)
@@ -14,7 +14,7 @@ const registerAndLogin = async (email = 'user@example.com', name = 'User') => {
   return res.body.token;
 };
 
-// ── Setup / Teardown ──────────────────────────────────────────────────────────
+// Setup / Teardown 
 
 beforeAll(async () => {
   await sequelize.sync({ force: true });
@@ -29,7 +29,7 @@ afterEach(async () => {
   await User.destroy({ where: {}, truncate: true, cascade: true });
 });
 
-// ── Create project ────────────────────────────────────────────────────────────
+// Create project
 
 describe('POST /api/v1/projects', () => {
   it('creates a project for an authenticated user', async () => {
@@ -64,7 +64,7 @@ describe('POST /api/v1/projects', () => {
   });
 });
 
-// ── List projects ─────────────────────────────────────────────────────────────
+// List projects
 
 describe('GET /api/v1/projects', () => {
   it('returns only the projects owned by the requesting user', async () => {
@@ -95,7 +95,7 @@ describe('GET /api/v1/projects', () => {
   });
 });
 
-// ── Update project ────────────────────────────────────────────────────────────
+// Update project
 
 describe('PATCH /api/v1/projects/:id', () => {
   it('renames a project', async () => {
@@ -134,7 +134,7 @@ describe('PATCH /api/v1/projects/:id', () => {
   });
 });
 
-// ── Delete project ────────────────────────────────────────────────────────────
+// Delete project
 
 describe('DELETE /api/v1/projects/:id', () => {
   it('deletes a project successfully', async () => {

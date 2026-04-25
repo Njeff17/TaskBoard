@@ -3,7 +3,10 @@ const cors = require('cors');
 const path = require('path');
 
 const { errorHandler } = require('./src/middlewares/error.middleware');
+// routes imports
 const authRoutes = require('./src/routes/auth.routes');
+const projectRoutes = require('./src/routes/project.routes');
+const taskRoutes = require('./src/routes/task.routes');
 
 const app = express();
 
@@ -18,8 +21,10 @@ app.use(
 // body parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// routes
+// use routes
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/projects', projectRoutes);
+app.use('/api/v1/projects', taskRoutes);
 
 // health check
 app.get('/api/health', (_req, res) => res.json({ status: 'OK', timestamp: new Date().toISOString() }));
