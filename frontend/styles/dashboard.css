@@ -1,4 +1,4 @@
-/* Kanban board — Bootstrap has no built-in kanban, so this stays custom */
+/* Kanban board */
 .kanban-board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -15,29 +15,58 @@
 
 .kanban-col-header {
   padding: 0.9rem 1.1rem;
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid var(--bs-border-color);
 }
 
 .kanban-col-title {
-  display: flex; align-items: center; gap: 0.5rem;
-  font-size: 0.75rem; font-weight: 700;
-  letter-spacing: 0.07em; text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
 }
 
-.kanban-dot { width: 8px; height: 8px; border-radius: 50%; }
+.kanban-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
 
-.col-todo   .kanban-dot { background: #3b82f6; }
-.col-todo   .kanban-col-title { color: #60a5fa; }
-.col-inprog .kanban-dot { background: #f59e0b; }
-.col-inprog .kanban-col-title { color: #fbbf24; }
-.col-done   .kanban-dot { background: #22c55e; }
-.col-done   .kanban-col-title { color: #4ade80; }
+.col-todo .kanban-dot {
+  background: #3b82f6;
+}
+
+.col-todo .kanban-col-title {
+  color: #60a5fa;
+}
+
+.col-inprog .kanban-dot {
+  background: #f59e0b;
+}
+
+.col-inprog .kanban-col-title {
+  color: #fbbf24;
+}
+
+.col-done .kanban-dot {
+  background: #22c55e;
+}
+
+.col-done .kanban-col-title {
+  color: #4ade80;
+}
 
 .kanban-col-body {
   padding: 0.75rem;
-  display: flex; flex-direction: column;
-  gap: 0.6rem; min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 120px;
 }
 
 /* Task cards */
@@ -49,25 +78,55 @@
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
 .task-card:hover {
   border-color: rgba(99, 102, 241, 0.4);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   transform: translateY(-1px);
 }
 
-.task-card-title  { font-size: 0.875rem; font-weight: 600; color: var(--bs-body-color); }
-.task-card-desc   {
-  font-size: 0.775rem; color: var(--bs-secondary-color);
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-  overflow: hidden; margin: 0.3rem 0 0.55rem;
+.task-card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--bs-body-color);
+}
+
+.task-card-desc {
+  font-size: 0.775rem;
+  color: var(--bs-secondary-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0.3rem 0 0.55rem;
   line-height: 1.5;
 }
 
-.task-card-footer { display: flex; align-items: center; justify-content: space-between; }
-.task-actions     { display: flex; gap: 0.25rem; opacity: 0; transition: opacity 0.2s; }
-.task-card:hover .task-actions { opacity: 1; }
-.task-due         { font-size: 0.72rem; color: var(--bs-secondary-color); }
-.task-due.overdue { color: #ef4444; }
+.task-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.task-card:hover .task-actions {
+  opacity: 1;
+}
+
+.task-due {
+  font-size: 0.72rem;
+  color: var(--bs-secondary-color);
+}
+
+.task-due.overdue {
+  color: #ef4444;
+}
 
 /* Project detail header accent bar */
 .project-detail-header {
@@ -77,17 +136,51 @@
 
 /* Status filter pills */
 .filter-pill {
-  padding: 0.28rem 0.85rem; border-radius: 999px;
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
-  cursor: pointer; transition: all 0.2s ease; border: 1.5px solid var(--bs-border-color);
-  background: transparent; color: var(--bs-secondary-color); font-family: inherit;
+  padding: 0.28rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1.5px solid var(--bs-border-color);
+  background: transparent;
+  color: var(--bs-secondary-color);
+  font-family: inherit;
 }
-.filter-pill:hover  { border-color: rgba(99,102,241,0.4); color: #818cf8; }
-.filter-pill.active        { border-color: #6366f1; color: #818cf8; background: rgba(99,102,241,0.1); }
-.filter-pill.active-todo   { border-color: #3b82f6; color: #60a5fa; background: rgba(59,130,246,0.1); }
-.filter-pill.active-inprog { border-color: #f59e0b; color: #fbbf24; background: rgba(245,158,11,0.1); }
-.filter-pill.active-done   { border-color: #22c55e; color: #4ade80; background: rgba(34,197,94,0.1); }
+
+.filter-pill:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #818cf8;
+}
+
+.filter-pill.active {
+  border-color: #6366f1;
+  color: #818cf8;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.filter-pill.active-todo {
+  border-color: #3b82f6;
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.filter-pill.active-inprog {
+  border-color: #f59e0b;
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.filter-pill.active-done {
+  border-color: #22c55e;
+  color: #4ade80;
+  background: rgba(34, 197, 94, 0.1);
+}
 
 @media (max-width: 900px) {
-  .kanban-board { grid-template-columns: 1fr; }
+  .kanban-board {
+    grid-template-columns: 1fr;
+  }
 }
