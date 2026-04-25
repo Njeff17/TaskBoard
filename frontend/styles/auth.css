@@ -1,0 +1,48 @@
+/* Auth page glowing background orbs only — Bootstrap handles the rest */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-wrapper::before,
+.auth-wrapper::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+.auth-wrapper::before {
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.14), transparent 70%);
+  top: -120px; left: -120px;
+}
+.auth-wrapper::after {
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.11), transparent 70%);
+  bottom: -90px; right: -90px;
+}
+
+.auth-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 24px rgba(99, 102, 241, 0.15) !important;
+  border-color: rgba(99, 102, 241, 0.2) !important;
+}
+
+.auth-icon {
+  width: 56px; height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; margin: 0 auto 1rem;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
