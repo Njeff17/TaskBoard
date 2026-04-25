@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/dashboard.css" />
 </head>
+
 <body>
 
   <!-- ── Navbar ─────────────────────────────────────────────────────────── -->
@@ -63,14 +65,14 @@
 
             <!-- Feedback alerts -->
             <div id="profile-success" class="alert alert-success d-none" role="status"></div>
-            <div id="profile-error"   class="alert alert-danger  d-none" role="alert"></div>
+            <div id="profile-error" class="alert alert-danger  d-none" role="alert"></div>
 
             <!-- Edit form -->
             <form id="profile-form" novalidate>
               <div class="mb-3">
                 <label class="form-label fw-semibold" for="profile-name">Display name</label>
-                <input id="profile-name" name="name" type="text" class="form-control"
-                       placeholder="Your name" autocomplete="name" required />
+                <input id="profile-name" name="name" type="text" class="form-control" placeholder="Your name"
+                  autocomplete="name" required />
               </div>
               <button id="profile-submit" type="submit" class="btn btn-primary fw-semibold px-4">
                 Save Changes
@@ -80,8 +82,7 @@
             <hr class="my-4" />
 
             <div class="text-center">
-              <button class="btn btn-outline-secondary btn-sm"
-                      onclick="document.getElementById('logout-btn').click()">
+              <button class="btn btn-outline-secondary btn-sm" onclick="document.getElementById('logout-btn').click()">
                 🔓 Log out of TaskBoard
               </button>
             </div>
@@ -97,4 +98,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script type="module" src="/js/pages/profile.js"></script>
 </body>
+
 </html>

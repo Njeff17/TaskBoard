@@ -1,50 +1,28 @@
-/**
- * Base API client — wraps fetch with auth header injection,
- * JSON parsing, and consistent error handling.
- */
-
+// Base API client
 const API_BASE = '/api/v1';
 
-/**
- * Retrieves the stored JWT token.
- * @returns {string|null}
- */
+// Retrieves the stored JWT token.
 export const getToken = () => localStorage.getItem('taskboard_token');
 
-/**
- * Stores the JWT token and user data after login / register.
- * @param {string} token
- * @param {object} user
- */
+// Stores the JWT token and user data after login / register.
 export const setSession = (token, user) => {
   localStorage.setItem('taskboard_token', token);
   localStorage.setItem('taskboard_user', JSON.stringify(user));
 };
 
-/**
- * Removes the session from local storage (logout).
- */
+// Removes the session from local storage (logout).
 export const clearSession = () => {
   localStorage.removeItem('taskboard_token');
   localStorage.removeItem('taskboard_user');
 };
 
-/**
- * Returns the stored user object, or null.
- * @returns {object|null}
- */
+// Returns the stored user object, or null.
 export const getCurrentUser = () => {
   const raw = localStorage.getItem('taskboard_user');
   return raw ? JSON.parse(raw) : null;
 };
 
-/**
- * Core request function.
- * @param {string} path  - API path (e.g. '/auth/login')
- * @param {object} [options] - fetch options override
- * @returns {Promise<any>} Parsed JSON body
- * @throws {Error} with `.message` set to the API error string
- */
+// Core request function.
 export const request = async (path, options = {}) => {
   const token = getToken();
 
@@ -79,7 +57,7 @@ export const request = async (path, options = {}) => {
   return data;
 };
 
-export const get    = (path, opts) => request(path, { method: 'GET',    ...opts });
-export const post   = (path, body) => request(path, { method: 'POST',   body: JSON.stringify(body) });
-export const patch  = (path, body) => request(path, { method: 'PATCH',  body: JSON.stringify(body) });
-export const del    = (path)       => request(path, { method: 'DELETE' });
+export const get = (path, opts) => request(path, { method: 'GET', ...opts });
+export const post = (path, body) => request(path, { method: 'POST', body: JSON.stringify(body) });
+export const patch = (path, body) => request(path, { method: 'PATCH', body: JSON.stringify(body) });
+export const del = (path) => request(path, { method: 'DELETE' });
