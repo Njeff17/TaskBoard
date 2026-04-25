@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Tasks — TaskBoard</title>
+  <meta name="description" content="View and manage tasks for your TaskBoard project." />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/dashboard.css" />
+</head>
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────────────────────────── -->
+  <nav class="navbar sticky-top app-navbar px-3">
+    <a class="brand-text" href="/pages/projects.html">📋 TaskBoard</a>
+    <div class="d-flex align-items-center gap-2">
+      <a href="/pages/profile.html" class="text-decoration-none d-flex align-items-center gap-2">
+        <div class="navbar-avatar" id="navbar-avatar"></div>
+        <span id="navbar-user-name" class="text-light small d-none d-sm-inline"></span>
+      </a>
+      <button id="logout-btn" class="btn btn-outline-secondary btn-sm">Log out</button>
+    </div>
+  </nav>
+
+  <!-- ── Main ───────────────────────────────────────────────────────────── -->
+  <main class="container py-4">
+
+    <!-- Back link -->
+    <a href="/pages/projects.html" class="btn btn-outline-secondary btn-sm mb-3">← Back to Projects</a>
+
+    <!-- Project header card -->
+    <div class="card border project-detail-header mb-4">
+      <div class="card-body">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+          <div>
+            <h2 class="h4 fw-bold mb-1" id="project-title">
+              <span class="spinner-border spinner-border-sm text-primary" role="status"></span>
+            </h2>
+            <p class="text-muted small mb-1" id="project-desc"></p>
+            <small class="text-muted" id="project-date"></small>
+          </div>
+          <div class="d-flex gap-2 flex-shrink-0">
+            <button id="edit-project-btn"   class="btn btn-outline-secondary btn-sm">✏️ Edit</button>
+            <button id="delete-project-btn" class="btn btn-outline-danger    btn-sm">🗑 Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Board toolbar -->
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+      <div class="d-flex gap-2 flex-wrap">
+        <button class="filter-pill" data-filter="ALL">All</button>
+        <button class="filter-pill" data-filter="TODO">To Do</button>
+        <button class="filter-pill" data-filter="IN_PROGRESS">In Progress</button>
+        <button class="filter-pill" data-filter="DONE">Done</button>
+      </div>
+      <button id="add-task-btn" class="btn btn-primary btn-sm fw-semibold">+ Add Task</button>
+    </div>
+
+    <!-- Kanban board -->
+    <div class="kanban-board">
+
+      <div class="kanban-column col-todo">
+        <div class="kanban-col-header">
+          <div class="kanban-col-title"><span class="kanban-dot"></span>To Do</div>
+          <span class="badge bg-secondary rounded-pill" id="cnt-todo">0</span>
+        </div>
+        <div class="kanban-col-body" id="col-todo"></div>
+      </div>
+
+      <div class="kanban-column col-inprog">
+        <div class="kanban-col-header">
+          <div class="kanban-col-title"><span class="kanban-dot"></span>In Progress</div>
+          <span class="badge bg-secondary rounded-pill" id="cnt-inprog">0</span>
+        </div>
+        <div class="kanban-col-body" id="col-inprog"></div>
+      </div>
+
+      <div class="kanban-column col-done">
+        <div class="kanban-col-header">
+          <div class="kanban-col-title"><span class="kanban-dot"></span>Done</div>
+          <span class="badge bg-secondary rounded-pill" id="cnt-done">0</span>
+        </div>
+        <div class="kanban-col-body" id="col-done"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── Bootstrap Modal (shared) ───────────────────────────────────────── -->
+  <div class="modal fade" id="appModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title" id="modal-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-footer border-top">
+          <button id="modal-cancel"  class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button id="modal-confirm" class="btn btn-primary">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="/js/pages/project-detail.js"></script>
+</body>
+</html>
