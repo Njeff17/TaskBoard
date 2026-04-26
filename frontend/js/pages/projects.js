@@ -1,14 +1,14 @@
-import { requireAuth, initNavbar }   from '../components/navbar.js';
-import { openModal, closeModal }      from '../components/modal.js';
-import { showToast }                  from '../components/toast.js';
+import { requireAuth, initNavbar } from '../components/navbar.js';
+import { openModal, closeModal } from '../components/modal.js';
+import { showToast } from '../components/toast.js';
 import { getProjects, createProject, updateProject, deleteProject } from '../services/project.service.js';
 
 if (!requireAuth()) throw new Error('Unauthenticated');
 initNavbar();
 
 // DOM refs 
-const grid        = document.getElementById('projects-grid');
-const newProjBtn  = document.getElementById('new-project-btn');
+const grid = document.getElementById('projects-grid');
+const newProjBtn = document.getElementById('new-project-btn');
 const searchInput = document.getElementById('search-input');
 
 let allProjects = [];
@@ -28,7 +28,7 @@ const renderProjects = (projects) => {
   if (projects.length === 0) {
     grid.innerHTML = `
       <div class="col-12 text-center py-5">
-        <div style="font-size:3.5rem" class="mb-3">📋</div>
+        <div style="font-size:3.5rem" class="mb-3"><i class="bi bi-folder2-open"></i></div>
         <h4 class="text-secondary mb-2">No projects yet</h4>
         <p class="text-muted mb-4">Create your first project to start organising tasks.</p>
         <button class="btn btn-primary" id="empty-create-btn">+ New Project</button>
@@ -44,15 +44,15 @@ const renderProjects = (projects) => {
           <div class="d-flex justify-content-between align-items-start">
             <h5 class="card-title mb-0 project-title" data-id="${p.id}" style="cursor:pointer">${escHtml(p.name)}</h5>
             <div class="d-flex gap-1 ms-2 flex-shrink-0">
-              <button class="btn btn-outline-secondary btn-sm edit-btn" data-id="${p.id}" title="Edit">✏️</button>
-              <button class="btn btn-outline-danger   btn-sm delete-btn" data-id="${p.id}" title="Delete">🗑</button>
+              <button class="btn btn-outline-secondary btn-sm edit-btn" data-id="${p.id}" title="Edit"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-outline-danger   btn-sm delete-btn" data-id="${p.id}" title="Delete"><i class="bi bi-trash3"></i></button>
             </div>
           </div>
           <p class="card-text text-muted small flex-grow-1 mb-0">
             ${p.description ? escHtml(p.description) : '<em>No description</em>'}
           </p>
           <div class="d-flex justify-content-between align-items-center pt-2 border-top border-secondary-subtle">
-            <small class="text-muted">📅 ${formatDate(p.createdAt)}</small>
+            <small class="text-muted"><i class="bi bi-calendar3 me-1"></i>${formatDate(p.createdAt)}</small>
             <small class="text-primary">View tasks →</small>
           </div>
         </div>
@@ -118,12 +118,12 @@ const projectFormHtml = (name = '', desc = '') => `
 // Create modal
 const openCreateModal = () => {
   openModal({
-    title: '✨ New Project',
+    title: 'New Project',
     body: projectFormHtml(),
     confirmText: 'Create Project',
     onConfirm: async () => {
-      const name  = document.getElementById('modal-proj-name').value.trim();
-      const desc  = document.getElementById('modal-proj-desc').value.trim();
+      const name = document.getElementById('modal-proj-name').value.trim();
+      const desc = document.getElementById('modal-proj-desc').value.trim();
       const errEl = document.getElementById('proj-modal-error');
       if (!name) { errEl.textContent = 'Project name is required.'; errEl.classList.remove('d-none'); return; }
       await createProject({ name, description: desc });
@@ -139,12 +139,12 @@ const openEditModal = (id) => {
   const p = allProjects.find((x) => String(x.id) === String(id));
   if (!p) return;
   openModal({
-    title: '✏️ Edit Project',
+    title: 'Edit Project',
     body: projectFormHtml(p.name, p.description || ''),
     confirmText: 'Save Changes',
     onConfirm: async () => {
-      const name  = document.getElementById('modal-proj-name').value.trim();
-      const desc  = document.getElementById('modal-proj-desc').value.trim();
+      const name = document.getElementById('modal-proj-name').value.trim();
+      const desc = document.getElementById('modal-proj-desc').value.trim();
       const errEl = document.getElementById('proj-modal-error');
       if (!name) { errEl.textContent = 'Project name is required.'; errEl.classList.remove('d-none'); return; }
       await updateProject(id, { name, description: desc });
@@ -160,7 +160,7 @@ const openDeleteModal = (id) => {
   const p = allProjects.find((x) => String(x.id) === String(id));
   if (!p) return;
   openModal({
-    title: '🗑 Delete Project',
+    title: 'Delete Project',
     body: `<p class="mb-0">Delete <strong>${escHtml(p.name)}</strong>?<br>
            <span class="text-muted small">All tasks inside will be permanently removed.</span></p>`,
     confirmText: 'Delete',

@@ -1,10 +1,7 @@
-/**
- * Toast notifications using Bootstrap 5 Toast API.
- * `bootstrap` is available as a global from the CDN bundle script.
- */
+// Toast notifications using Bootstrap 5 Toast API.
 
 const ICONS = { success: '✓', error: '✕', info: 'ℹ' };
-const BG    = { success: 'bg-success', error: 'bg-danger', info: 'bg-primary' };
+const BG = { success: 'bg-success', error: 'bg-danger', info: 'bg-primary' };
 
 const getContainer = () => {
   let c = document.getElementById('toast-container');
@@ -18,13 +15,9 @@ const getContainer = () => {
   return c;
 };
 
-/**
- * @param {string} message
- * @param {'success'|'error'|'info'} [type='info']
- */
 export const showToast = (message, type = 'info') => {
   const icon = ICONS[type] ?? ICONS.info;
-  const bg   = BG[type]   ?? BG.info;
+  const bg = BG[type] ?? BG.info;
 
   const el = document.createElement('div');
   el.className = `toast align-items-center text-white ${bg} border-0`;

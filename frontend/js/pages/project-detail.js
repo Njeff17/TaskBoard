@@ -64,11 +64,11 @@ const taskCardHtml = (t) => {
       ${t.description ? `<div class="task-card-desc">${escHtml(t.description)}</div>` : ''}
       <div class="task-card-footer">
         <span class="task-due ${overdue ? 'overdue' : ''}">
-          ${t.dueDate ? `📅 ${formatDate(t.dueDate)}${overdue ? ' (overdue)' : ''}` : ''}
+          ${t.dueDate ? `<i class="bi bi-calendar3 me-1"></i>${formatDate(t.dueDate)}${overdue ? ' (overdue)' : ''}` : ''}
         </span>
         <div class="task-actions">
-          <button class="btn btn-outline-secondary btn-sm task-edit-btn"   data-id="${t.id}" title="Edit">✏️</button>
-          <button class="btn btn-outline-danger   btn-sm task-delete-btn" data-id="${t.id}" title="Delete">🗑</button>
+          <button class="btn btn-outline-secondary btn-sm task-edit-btn"   data-id="${t.id}" title="Edit"><i class="bi bi-pencil-square"></i></button>
+          <button class="btn btn-outline-danger   btn-sm task-delete-btn" data-id="${t.id}" title="Delete"><i class="bi bi-trash3"></i></button>
         </div>
       </div>
     </div>`;
@@ -142,9 +142,9 @@ const taskFormHtml = (t) => {
     <div class="col-6">
       <label class="form-label fw-semibold" for="task-status">Status</label>
       <select id="task-status" class="form-select">
-        <option value="TODO"        ${(t.status || 'TODO') === 'TODO'        ? 'selected' : ''}>📋 To Do</option>
-        <option value="IN_PROGRESS" ${t.status === 'IN_PROGRESS'             ? 'selected' : ''}>⚡ In Progress</option>
-        <option value="DONE"        ${t.status === 'DONE'                    ? 'selected' : ''}>✅ Done</option>
+        <option value="TODO"        ${(t.status || 'TODO') === 'TODO'        ? 'selected' : ''}>To Do</option>
+        <option value="IN_PROGRESS" ${t.status === 'IN_PROGRESS'             ? 'selected' : ''}>In Progress</option>
+        <option value="DONE"        ${t.status === 'DONE'                    ? 'selected' : ''}>Done</option>
       </select>
     </div>
     <div class="col-6">
@@ -168,7 +168,7 @@ const openTaskModal = (taskId = null) => {
   const task   = taskId ? allTasks.find((t) => String(t.id) === String(taskId)) : null;
   const isEdit = !!task;
   openModal({
-    title: isEdit ? '✏️ Edit Task' : '➕ New Task',
+    title: isEdit ? 'Edit Task' : 'New Task',
     body:  taskFormHtml(task),
     confirmText: isEdit ? 'Save Changes' : 'Create Task',
     onConfirm: async () => {
@@ -209,7 +209,7 @@ const openTaskModal = (taskId = null) => {
 const openDeleteTaskModal = (taskId) => {
   const t = allTasks.find((x) => String(x.id) === String(taskId));
   openModal({
-    title: '🗑 Delete Task',
+    title: 'Delete Task',
     body:  `<p class="mb-0">Delete <strong>${escHtml(t?.title)}</strong>? This cannot be undone.</p>`,
     confirmText: 'Delete', dangerous: true,
     onConfirm: async () => {
@@ -225,7 +225,7 @@ const openDeleteTaskModal = (taskId) => {
 editProjBtn?.addEventListener('click', () => {
   if (!currentProject) return;
   openModal({
-    title: '✏️ Edit Project',
+    title: 'Edit Project',
     body: `
       <div class="mb-3">
         <label class="form-label fw-semibold" for="ep-name">Name</label>
@@ -252,7 +252,7 @@ editProjBtn?.addEventListener('click', () => {
 
 deleteProjBtn?.addEventListener('click', () => {
   openModal({
-    title: '🗑 Delete Project',
+    title: 'Delete Project',
     body:  `<p class="mb-0">Delete <strong>${escHtml(currentProject?.name)}</strong> and all its tasks?</p>`,
     confirmText: 'Delete', dangerous: true,
     onConfirm: async () => {
