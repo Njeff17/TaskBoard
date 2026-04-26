@@ -1,34 +1,17 @@
-/**
- * Modal component using Bootstrap 5 Modal API.
- * Requires a single #appModal element in the page HTML.
- * `bootstrap` is available as a global from the CDN bundle script.
- *
- * Usage:
- *   import { openModal, closeModal } from '../components/modal.js';
- *   openModal({ title, body, onConfirm, confirmText, cancelText, dangerous });
- */
-
+// Modal component using Bootstrap 5 Modal API.
 export const closeModal = () => {
   const el = document.getElementById('appModal');
   if (el) bootstrap.Modal.getInstance(el)?.hide();
 };
 
-/**
- * @param {object} cfg
- * @param {string}          cfg.title
- * @param {string|HTMLElement} cfg.body
- * @param {Function}        [cfg.onConfirm]
- * @param {string}          [cfg.confirmText='Confirm']
- * @param {string}          [cfg.cancelText='Cancel']
- * @param {boolean}         [cfg.dangerous=false]
- */
+
 export const openModal = ({
   title,
   body,
   onConfirm,
   confirmText = 'Confirm',
-  cancelText  = 'Cancel',
-  dangerous   = false,
+  cancelText = 'Cancel',
+  dangerous = false,
 }) => {
   const el = document.getElementById('appModal');
   if (!el) { console.error('#appModal element not found'); return; }
@@ -45,12 +28,12 @@ export const openModal = ({
   }
 
   // Configure buttons
-  const cancelBtn  = el.querySelector('#modal-cancel');
+  const cancelBtn = el.querySelector('#modal-cancel');
   const confirmBtn = el.querySelector('#modal-confirm');
 
-  cancelBtn.textContent  = cancelText;
+  cancelBtn.textContent = cancelText;
   confirmBtn.textContent = confirmText;
-  confirmBtn.className   = `btn ${dangerous ? 'btn-danger' : 'btn-primary'}`;
+  confirmBtn.className = `btn ${dangerous ? 'btn-danger' : 'btn-primary'}`;
 
   // Replace confirm button to clear old listeners
   const freshConfirm = confirmBtn.cloneNode(true);
@@ -68,9 +51,9 @@ export const openModal = ({
         // We just reset the button so the user can try again.
       } finally {
         if (document.contains(freshConfirm)) {
-          freshConfirm.disabled    = false;
+          freshConfirm.disabled = false;
           freshConfirm.textContent = confirmText;
-          freshConfirm.className   = `btn ${dangerous ? 'btn-danger' : 'btn-primary'}`;
+          freshConfirm.className = `btn ${dangerous ? 'btn-danger' : 'btn-primary'}`;
         }
       }
     });

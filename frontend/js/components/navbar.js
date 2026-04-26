@@ -1,18 +1,15 @@
-/**
- * Navbar component — renders navigation and handles logout.
- * Call initNavbar() on every protected page.
- */
+//Navbar component — renders navigation and handles logout.
 import { getCurrentUser } from '../services/api.js';
-import { logout }         from '../services/auth.service.js';
+import { logout } from '../services/auth.service.js';
 
 export const initNavbar = () => {
   const user = getCurrentUser();
 
   // Populate user name & avatar initial
-  const nameEl   = document.getElementById('navbar-user-name');
+  const nameEl = document.getElementById('navbar-user-name');
   const avatarEl = document.getElementById('navbar-avatar');
 
-  if (nameEl && user)   nameEl.textContent  = user.name;
+  if (nameEl && user) nameEl.textContent = user.name;
   if (avatarEl && user) avatarEl.textContent = user.name.charAt(0).toUpperCase();
 
   // Logout button
@@ -26,10 +23,7 @@ export const initNavbar = () => {
   }
 };
 
-/**
- * Guard — redirects to login if the user is not authenticated.
- * Call requireAuth() at the top of every protected page script.
- */
+// Guard — redirects to login if the user is not authenticated.
 export const requireAuth = () => {
   const token = localStorage.getItem('taskboard_token');
   if (!token) {
@@ -39,9 +33,8 @@ export const requireAuth = () => {
   return true;
 };
 
-/**
- * Guard — redirects authenticated users away from auth pages.
- */
+// Guard — redirects authenticated users away from auth pages.
+
 export const redirectIfAuthenticated = () => {
   const token = localStorage.getItem('taskboard_token');
   if (token) {
