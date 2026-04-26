@@ -12,10 +12,10 @@ const {
 // All task routes require authentication
 router.use(authenticate);
 
-router.post('/:projectId/tasks', validateCreateTask, taskController.createTask);
-router.get('/:projectId/tasks', taskController.listTasks);
-router.get('/:projectId/tasks/:taskId', taskController.getTask);
-router.patch('/:projectId/tasks/:taskId', validateUpdateTask, taskController.updateTask);
-router.delete('/:projectId/tasks/:taskId', taskController.deleteTask);
+router.post('/', validateCreateTask, taskController.createTask);
+router.get('/', taskController.listTasks);
+router.get('/:taskId', taskController.getTask);
+router.patch('/:taskId', validateUpdateTask, taskController.updateTask);
+router.delete('/:taskId', taskController.deleteTask);
 
 module.exports = router;
