@@ -125,7 +125,9 @@ const loadTasks = async () => {
 };
 
 // Task form HTML
-const taskFormHtml = (t = {}) => `
+const taskFormHtml = (t) => {
+  t = t || {};
+  return `
   <div class="mb-3">
     <label class="form-label fw-semibold" for="task-title">Title <span class="text-danger">*</span></label>
     <input id="task-title" class="form-control" type="text"
@@ -152,6 +154,7 @@ const taskFormHtml = (t = {}) => `
   </div>
   <div id="task-modal-error" class="text-danger small d-none"></div>
 `;
+};
 
 const collectTask = () => ({
   title:       document.getElementById('task-title').value.trim(),
@@ -190,7 +193,11 @@ const openTaskModal = (taskId = null) => {
         closeModal();
         await loadTasks();
       } catch (err) {
-        errEl.textContent = err.message || 'Something went wrong. Please try again.';
+        let msg = err.message || 'Something went wrong. Please try again.';
+        if (err.details && Array.isArray(err.details)) {
+          msg = err.details.map((d) => d.message).join('<br>');
+        }
+        errEl.innerHTML = msg;
         errEl.classList.remove('d-none');
         throw err; // re-throw so modal.js resets the button
       }

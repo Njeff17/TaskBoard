@@ -2,15 +2,16 @@
 
 const sequelize = require('../config/database');
 
-// ── Import model factories ─────────────────────────────────────────────────
-const UserFactory = require('./User');
+const UserFactory    = require('./User');
+const ProjectFactory = require('./Project');
+const TaskFactory    = require('./Task');
 
-// ── Instantiate models ─────────────────────────────────────────────────────
-const User = UserFactory(sequelize);
+const User    = UserFactory(sequelize);
+const Project = ProjectFactory(sequelize);
+const Task    = TaskFactory(sequelize);
 
-const models = { User };
+const models = { User, Project, Task };
 
-// ── Run associations (if defined on each model) ────────────────────────────
 Object.values(models).forEach((model) => {
   if (typeof model.associate === 'function') {
     model.associate(models);

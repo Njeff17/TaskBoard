@@ -9,20 +9,20 @@ const PORT = process.env.PORT || 5000;
 const startServer = async () => {
   try {
     await sequelize.authenticate();
-    console.log('✅ Database connection established.');
+    console.log('Database connection established.');
 
-    await sequelize.sync({ alter: true });
-    console.log('✅ Models synchronized with database.');
+    await sequelize.sync();
+    console.log('Models synchronized with database.');
 
     await seedAdmin();
 
     app.listen(PORT, () => {
-      console.log(`🚀 TaskBoard server running at http://localhost:${PORT}`);
-      console.log(`   API available at http://localhost:${PORT}/api/v1`);
-      console.log(`   Frontend available at http://localhost:${PORT}`);
+      console.log(`TaskBoard server running at http://localhost:${PORT}`);
+      console.log(`API available at http://localhost:${PORT}/api/v1`);
+      console.log(`Frontend available at http://localhost:${PORT}`);
     });
   } catch (error) {
-    console.error('❌ Unable to start server:', error);
+    console.error('Unable to start server:', error);
     process.exit(1);
   }
 };

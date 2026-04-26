@@ -19,13 +19,13 @@ const validateCreateTask = [
     .notEmpty().withMessage('Task title is required')
     .isLength({ max: 200 }).withMessage('Title cannot exceed 200 characters'),
   body('description')
-    .optional({ nullable: true })
+    .optional({ nullable: true, checkFalsy: true })
     .isLength({ max: 2000 }).withMessage('Description cannot exceed 2000 characters'),
   body('status')
     .optional()
     .isIn(VALID_STATUSES).withMessage('Status must be one of: TODO, IN_PROGRESS, DONE'),
   body('dueDate')
-    .optional({ nullable: true })
+    .optional({ nullable: true, checkFalsy: true })
     .isISO8601().withMessage('Due date must be a valid date in YYYY-MM-DD format'),
   handleValidation,
 ];
