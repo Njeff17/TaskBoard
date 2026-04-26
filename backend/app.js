@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 // use routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/projects', projectRoutes);
-app.use('/api/v1/projects', taskRoutes);
+app.use('/api/v1/projects/:projectId/tasks', taskRoutes);
 
 // health check
 app.get('/api/health', (_req, res) => res.json({ status: 'OK', timestamp: new Date().toISOString() }));
