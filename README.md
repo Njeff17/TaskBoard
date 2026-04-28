@@ -11,7 +11,15 @@ Auth = JWT (jsonwebtoken) Stateless — no session store needed; token is verifi
 Passwords = bcryptjs Industry-standard adaptive hashing; cost factor 12
 Validation = express-validator Declarative, per-field validation before logic runs
 Tests = Jest + Supertest  Full HTTP integration tests with a single npm test command; SQLite keeps them DB-free      
-Frontend = Vanilla HTML + CSS + ES Modules; clean modular structure with import/export                            
+Frontend = Vanilla HTML + CSS + ES Modules; clean modular structure with import/export      
+
+
+## Step-by-step setup instructions
+
+How to clone = open cmd (set project location, ex: cd Desktop) then type "git clone https://github.com/Njeff17/TaskBoard.git"
+install dependencies = open project folder in text editor, then open new terminal, then type "cd backend" then type "npm install"
+run the backend = open project folder in text editor, then open new terminal, then type "cd backend" then type "npm run dev"
+run the frontend = open project folder in text editor, then open new terminal, then type "cd frontend" then type "npm run dev"
 
 *Why JWT over sessions?* JWT is stateless — the server doesn't need to store session data, making the API horizontally scalable. The trade-off is that tokens cannot be individually revoked before expiry (noted in Limitations).
 
