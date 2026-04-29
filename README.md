@@ -20,6 +20,7 @@ How to clone = open cmd (set project location, ex: cd Desktop) then type "git cl
 install dependencies = open project folder in text editor, then open new terminal, then type "cd backend" then type "npm install"
 run the backend = open project folder in text editor, then open new terminal, then type "cd backend" then type "npm run dev"
 run the frontend = open project folder in text editor, then open new terminal, then type "cd frontend" then type "npm run dev"
+how to run tests = open project folder in text editor, then open new terminal, then type "cd backend" then type "npm test"
 
 *Why JWT over sessions?* JWT is stateless — the server doesn't need to store session data, making the API horizontally scalable. The trade-off is that tokens cannot be individually revoked before expiry (noted in Limitations).
 
